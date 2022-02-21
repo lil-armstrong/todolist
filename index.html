@@ -1,12 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Task manager</title>
-</head>
-<body>
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Todo manager</title>
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles/main.css" />
+  </head>
+  <body class="">
+    <div class="container">
+      <div id="change-theme">
+        <label for="theme" class="px-4 flex p-4 gap-2">
+          <input type="checkbox" name="theme" id="theme" value="dark" /> Dark
+          Mode
+        </label>
+      </div>
+      <header class="flex flex-wrap justify-between">
+        <h1 class="app-name">Simple Todo manager</h1>
+        <div class="flex ml-auto">
+          <button
+            id="addNewTodoButton"
+            class="cta"
+            onclick="location.href='./add_collection.html'"
+          >
+            Add new
+          </button>
+        </div>
+      </header>
+
+      <ul class="flex flex-wrap gap-4 py-10" id="todo-list">
+        <li class="list-card">
+          <div class="">
+            <header>
+              <h2 class="list-title">
+                <a href="./collection.html">Name</a>
+              </h2>
+              <ul class="list-meta">
+                <li>Created at</li>
+              </ul>
+            </header>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Scripts here -->
+    <script>
+      const collection = ["Groceries", "Back to School", "Travel list"];
+      const todoListUl = document.getElementById("todo-list");
+      let collectionLength = collection.length;
+      let index = 0;
+      // loop
+      while (index < collectionLength) {
+        let liHTML = `<div class="">
+          <header>
+            <h2 class="list-title">
+              <a href="./collection.html">${collection[index]}</a>
+            </h2>
+            <ul class="list-meta">
+              <li>${new Date().toLocaleString()}</li>
+            </ul>
+          </header>
+        </div>
+      `;
+        let li = document.createElement("li");
+        li.classList.add("list-card");
+        li.innerHTML = liHTML;
+        todoListUl.appendChild(li);
+        console.log(li);
+        index += 1;
+      }
+    </script>
+    <script src="./src/index.js"></script>
+  </body>
 </html>

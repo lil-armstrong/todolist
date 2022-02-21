@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Todo manager - list</title>
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles/main.css" />
+  </head>
+  <body>
+    <div id="change-theme">
+      <label for="theme" class="px-4 flex p-4 gap-2">
+        <input type="checkbox" name="theme" id="theme" value="dark" /> Dark Mode
+      </label>
+    </div>
+    <header class="collection-header">
+      <div class="container">
+        <div class="mb-2">
+          <button onclick="history.go(-1)">Go back</button>
+        </div>
+        <div class="flex justify-between items-start">
+          <h1 class="page-title">Title</h1>
+          <button onclick="" class="cta">Discard list</button>
+        </div>
+
+        <ul class="flex gap-3 items-end meta mt-5">
+          <li><strong>12/05/2021 12:00 PM</strong></li>
+        </ul>
+      </div>
+    </header>
+
+    <div class="container flex-auto" id="todo-list">
+      <div class="mt-5 flex justify-end">
+        <button onclick="" class="cta">
+          <span class="text-lg">&plus;</span> Add new task
+        </button>
+      </div>
+      <ul class="task-list">
+        <li class="task-list__item">
+          <label class="inline-flex items-center gap-5">
+            <input type="checkbox" name="task" id="list-task" />
+            <div>
+              <span class="text-lg font-medium">Task</span>
+            </div>
+          </label>
+          <button type="button" class="ml-auto">Delete</button>
+        </li>
+      </ul>
+    </div>
+
+    <div class="sticky bottom-0">
+      <div class="container flex justify-between">
+        <button type="button" class="cta" onclick="location.href='index.html'">
+          Discard
+        </button>
+
+        <button
+          type="submit"
+          class="cta"
+          onclick="location.href='./add_list.html'"
+        >
+          Save changes
+        </button>
+      </div>
+    </div>
+    <script src="./src/index.js"></script>
+  </body>
+</html>

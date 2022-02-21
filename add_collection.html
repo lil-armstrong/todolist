@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple todo list - Add new list</title>
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles/main.css" />
+    <base href="." />
+  </head>
+  <body class="">
+    <div id="change-theme">
+      <label for="theme" class="px-4 flex p-4 gap-2">
+        <input type="checkbox" name="theme" id="theme" value="dark" /> Dark Mode
+      </label>
+    </div>
+
+    <div class="container">
+      <header class="">
+        <h1 class="page-title">Add collection</h1>
+        <a href="./index.html">&larr; Go back</a>
+      </header>
+
+      <form id="create-form" class="form-create-list nice-form">
+        <div class="form-group">
+          <label for="list-title"> Title </label>
+          <input
+            type="text"
+            name="title"
+            value="Shopping list"
+            id="list-title"
+            placeholder="Title"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="list-description"> Description </label>
+          <textarea
+            name="description"
+            id="list-description"
+            placeholder="Description"
+            cols="30"
+            rows="10"
+            aria-placeholder="#list-description"
+          >
+Shopping for Xmas</textarea
+          >
+        </div>
+        <div>
+          <div class="flex justify-end">
+            <button
+              class="cta"
+              name="addTaskButton"
+              id="addTaskButton"
+              type="button"
+            >
+              Add New Task
+            </button>
+          </div>
+
+          <ul class="task-list gap-5" id="taskList">
+            <!-- <li class="task-list__item">
+            <input type="checkbox" name="task" id="list-task" />
+            <span class="task-title">New task</span>
+            <button type="button">Discard</button>
+          </li> -->
+          </ul>
+        </div>
+
+        <div class="sticky bottom-0 flex justify-between mt-10">
+          <button
+            type="button"
+            class="cta"
+            onclick="location.href='index.html'"
+          >
+            Discard
+          </button>
+
+          <button type="submit" class="cta">Confirm save</button>
+        </div>
+      </form>
+    </div>
+    <script>
+      // Selecting elements
+      let form = document.getElementById("create-form"),
+        addTaskButton = form.addTaskButton,
+        taskListContainer = form.querySelector("#taskList"),
+        // Task list array to hold list of tasks
+        taskList = [],
+        counter = 0;
+
+      // register a submit form events
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        // Get the form data
+        let title = form.title,
+          description = form.description,
+          tasks = form.task || [],
+          createdAt = new Date(),
+          updatedAt = new Date();
+
+        // Display all task added to the form if any
+        tasks.forEach(function (item) {
+          console.log(item);
+        });
+      });
+
+      // register click event to the add task button
+      addTaskButton.addEventListener("click", addTask);
+
+      /**
+       * @function addTask - Function to add task
+       */
+      function addTask() {
+        // increase the counter by one
+        counter++;
+
+        // Add a task object to the taskList array
+        taskList.push({
+          name: `task ${counter}`,
+          id: Date.now(),
+          checked: true,
+        });
+        // Call displayTask function
+        displayTask();
+      }
+
+      /**
+       * @function displayTask - Function to display task from the taskList array
+       * */
+      function displayTask() {
+        let html = "";
+
+        // Loop through each task and append to the html variable
+        taskList.forEach(function (item) {
+          // replace the id, name with the item from the taskList
+          html += `<li class="task-list__item">
+            <input type="checkbox" id="${item.id}" checked="${item.checked}" />
+            <input class="task-title" name="task" value="${item.name}" type="text"/>
+            <button type="button">Discard</button>
+          </li>`;
+        });
+        // append html content to the task list container
+        if (taskList) taskListContainer.innerHTML = html;
+      }
+    </script>
+    <script src="./src/index.js" ></script>
+  </body>
+</html>
